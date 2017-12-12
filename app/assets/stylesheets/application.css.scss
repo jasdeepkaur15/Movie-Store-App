@@ -1,0 +1,70 @@
+
+ @import "bootstrap";
+@import "bootstrap-sprockets";
+
+
+.header{
+    background: #a30c0c;
+    height: 100px;
+    padding-top: 9px;
+    color: #9d9d9d;
+    border-color: brown;
+    font-family: serif;
+    font-size: 52px;
+    text-align: center;
+    border: outset;
+}
+
+.nav_bar{
+	backgroud: #a30c0c;
+
+}
+image {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+#myFooter {
+	backgroud: #333333;
+    color: white;
+    padding-top: 30px;
+}
+#myFooter a{
+	color: #d2d1d1;
+    text-decoration: none;
+}
+
+#myFooter .footer-copyright {
+    background-color: #333333;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: center;
+}
+
+#myFooter .row {
+    margin-bottom: 60px;
+}
+
+#myFooter .navbar-brand {
+    margin-top: 45px;
+    height: 65px;
+}
+
+#myFooter .footer-copyright p {
+    margin: 10px;
+    color: #ccc;
+}
+
+#myFooter ul {
+    list-style-type: none;
+    padding-left: 0;
+    line-height: 1.7;
+}
+
+#myFooter h5 {
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    margin-top: 30px;
+}
