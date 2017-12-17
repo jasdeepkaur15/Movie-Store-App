@@ -1,0 +1,167 @@
+
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div class="container" >
+	
+	<div class="row">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+		  <ol class="carousel-indicators">
+		    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		    <li data-target="#myCarousel" data-slide-to="1"></li>
+		    <li data-target="#myCarousel" data-slide-to="2"></li>
+		    <li data-target="#myCarousel" data-slide-to="3"></li>
+		  </ol>
+
+  <!-- Wrapper for slides -->
+			<div class="carousel-inner" role="listbox">
+			    <div class="item active">
+			    	<%= image_tag "Logan1.jpg"%>
+			      		<div class="carousel-caption">
+			        		<h3>Logan</h3>
+			      		</div>
+			    </div>
+
+			    <div class="item">
+			    	<%= image_tag "avengers1.jpg"%>
+			      <div class="carousel-caption">
+			        <h3>Avengers</h3>
+			        
+			      </div>
+			    </div>
+			    <div class="item">
+			    	<%= image_tag "wonder.jpg"%>
+			      <div class="carousel-caption">
+			        <h3>Wonder Woman</h3>
+			      </div>
+			    </div>
+		  	</div>
+
+
+
+  <!-- Left and right controls -->
+			  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+			    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+			    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
+		</div>
+
+	</div>
+		<div class="row">
+			<nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
+				<div style=" color: #9d9d9d; font-family: serif;font-size: 30px;color: #9d9d9d" >
+					
+					<a href=<%=detail_movies_path(view: "rate")%> style="color: antiquewhite;text-decoration: none;font-family: verdana sans-serif;font-weight: 800;"> TOP RATED MOVIE</a>
+				</div>
+
+			</nav>
+			
+		</div>
+		<div class="row" style="background: #a30c0c; border: outset; border-color: #3333; " >
+			
+			<div style="border:1px solid black;overflow:auto;width: 1164px;height: 410px; border-color: #3333">
+				<div class="container" style="padding: 30px">
+					<% @home_page_movie.each do |movie| %>
+
+				  		<div class="col-sm-4">
+				  			<div class="container1" style="padding: 30px; width: 336px;">
+					  			<img src="<%= movie.image_url	%>" alt="Avatar" class="image", width: 280px, height: 270px style="height: 270px;width: 280px;"/>
+					  			<div class="overlay">
+					    			<div class="text" style="color: antiquewhite; text-decoration: none;">
+					    				
+					    				<a href=<%=movie_path(movie)%> style="color: antiquewhite;text-decoration: none;font-family: verdana sans-serif;font-weight: 800;"> <%=movie.title%></a>
+					    			</div>
+					  			</div>
+					  		</div>
+					  	</div>
+					 <%end%>
+
+			  	</div>
+		  	</div>
+  		</div>
+
+
+  		<div class="row">
+			<nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
+				<div style=" color: #9d9d9d; font-family: serif;font-size: 30px;color: #9d9d9d" >
+					
+					<a href=<%=detail_movies_path(view: "top")%> style="color: antiquewhite;text-decoration: none;font-family: verdana sans-serif;font-weight: 800;">NEW MOVIES</a>
+
+				</div>
+
+			</nav>
+			
+		</div>
+		<div class="row" style="background: #a30c0c; border: outset; border-color: #3333; " >
+			
+			<div style="border:1px solid black;overflow:auto;width: 1164px;height: 410px; border-color: #3333">
+				<div class="container" style="padding: 30px">
+					<% @new_movies.each do |movie| %>
+
+				  		<div class="col-sm-4">
+				  			<div class="container1" style="padding: 30px; width: 336px;">
+					  			<img src="<%= movie.image_url	%>" alt="Avatar" class="image", width: 280px, height: 270px style="height: 270px;width: 280px;"/>
+					  			<div class="overlay">
+					    			<div class="text" >
+					    				<a href=<%=movie_path(movie)%> style="color: antiquewhite;text-decoration: none;font-family: verdana sans-serif;font-weight: 800;"> <%=movie.title%></a>
+					    			</div>
+					  			</div>
+					  		</div>
+					  	</div>
+					 <%end%>
+
+			  	</div>
+		  	</div>
+  		</div>
+
+  		<div class="row">
+			<nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
+				<div style=" color: #9d9d9d; font-family: serif;font-size: 30px;color: #9d9d9d" >
+					
+					<a href=<%=detail_movies_path(view: "view")%> style="color: antiquewhite;text-decoration: none;font-family: verdana sans-serif;font-weight: 800;">TOP VIEWED MOVIES</a>
+
+				</div>
+
+			</nav>
+			
+		</div>
+		<div class="row" style="background: #a30c0c; border: outset; border-color: #3333; " >
+			
+			<div style="border:1px solid black;overflow:auto;width: 1164px;height: 410px; border-color: #3333">
+				<div class="container" style="padding: 30px">
+					<% @top_view.each do |movie| %>
+\
+				  		<div class="col-sm-4">
+				  			<div class="container1" style="padding: 30px; width: 336px;">
+					  			<img src="<%= movie.image_url	%>" alt="Avatar" class="image", width: 280px, height: 270px style="height: 270px;width: 280px;"/>
+					  			<div class="overlay">
+					    			<div class="text" >
+					    				<a href=<%=movie_path(movie)%> style="color: antiquewhite;text-decoration: none;font-family: verdana sans-serif;font-weight: 800;"> <%=movie.title%></a>
+					    			</div>
+					  			</div>
+					  		</div>
+					  	</div>
+					 <%end%>
+
+			  	</div>
+		  	</div>
+  		</div>
+
+
+	</div>
+					
+	
+</div>
+
+
+
+
+

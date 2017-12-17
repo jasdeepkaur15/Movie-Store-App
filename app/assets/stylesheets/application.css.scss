@@ -8,7 +8,7 @@
     height: 100px;
     padding-top: 9px;
     color: #9d9d9d;
-    border-color: brown;
+    border-color: #3333;
     font-family: serif;
     font-size: 52px;
     text-align: center;
@@ -67,4 +67,57 @@ image {
     color: white;
     font-weight: bold;
     margin-top: 30px;
+}
+
+#bdy
+{
+        padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+
+
+.container1 {
+  position: relative;
+  width: 50%;
+}
+
+.image {
+  display: block;
+  border: outset;
+  border-color: #3333;
+  border-radius: 12px;
+  
+}
+.overlay {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%)
+
+}
+
+.container1:hover .overlay {
+  opacity: 1;
+}
+.container1:hover .image {
+  opacity: 0.3;
+}
+
+.text {
+    background-color: #a30c0c;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+    border: outset;
+        border-radius: 10px;
+    border-color: #3333;
+  }
+
+.button1:hover
+{
+      background: bottom;
 }

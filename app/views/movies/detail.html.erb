@@ -1,0 +1,181 @@
+	<div class="container" onload="myFunction()">
+		<ul class="nav nav-tabs">
+    		
+    		<li><button class="button1" id="rate" style="font-size: 26px;width: 377px;">BY RATING</button> </li>
+    		<li><button class="button1" id= "top" style="font-size: 26px;width: 377px;">TOP MOVIES</button> </li>
+    		<li><button class="button1" id= "view" style="font-size: 26px;width: 377px;">VIEWED MOVIES</button> </li>
+
+  		</ul>
+  	<div id = "demo">
+
+		<div class="row">
+
+
+			<nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
+				<div style=" color: #9d9d9d; font-family: serif;font-size: 30px;color: #9d9d9d;" >
+					TOP RATED MOVIES
+				</div>
+
+			</nav>
+			
+		</div>
+		<div class="row" style="background: #a30c0c; border: outset; border-color: #3333; " >
+			
+			
+				<div class="container" style="padding: 30px">
+					<% @home_page_movie.each do |movie| %>
+
+				  		<div class="col-sm-4">
+				  			<div class="container1" style="padding: 30px; width: 336px;">
+					  			<img src="<%= movie.image_url%>" alt="Avatar" class="image", width: 280px, height: 270px style="height: 270px;width: 280px;"/>
+					  			<div class="overlay">
+					    			<div class="text">
+					    				
+					    				<a href=<%=movie_path(movie)%> style="color: antiquewhite;text-decoration: none;font-family: verdana sans-serif;font-weight: 800;"> <%=movie.title%></a>
+					    			</div>
+					  			</div>
+					  		</div>
+					  	</div>
+					 <%end%>
+
+			  	</div>
+		  	
+  		</div>
+  	</div>
+
+  	<div id="demo2">
+  		<div class="row">
+			<nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
+				<a href="/movies/detail">
+				<div style=" color: #9d9d9d; font-family: serif;font-size: 30px;color: #9d9d9d" >
+					NEW MOVIE
+				</div></a>
+
+			</nav>
+			
+		</div>
+		<div class="row" style="background: #a30c0c; border: outset; border-color: #3333; " >
+			
+			
+				<div class="container" style="padding: 30px">
+					<% @new_movies.each do |movie| %>
+
+				  		<div class="col-sm-4">
+				  			<div class="container1" style="padding: 30px; width: 336px;">
+					  			<img src="<%= movie.image_url	%>" alt="Avatar" class="image", width: 280px, height: 270px style="height: 270px;width: 280px;"/>
+					  			<div class="overlay">
+					    			<div class="text">
+					    				<a href=<%=movie_path(movie)%> style="color: antiquewhite;text-decoration: none;font-family: verdana sans-serif;font-weight: 800;"> <%=movie.title%></a>
+					    			</div>
+					  			</div>
+					  		</div>
+					  	</div>
+					 <%end%>
+
+			  	</div>
+		  	
+  		</div>
+	</div>
+
+	<div id = "demo3">
+
+		<div class="row">
+
+
+			<nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
+				<div style=" color: #9d9d9d; font-family: serif;font-size: 30px;color: #9d9d9d;" >
+					TOP VIEWED MOVIES
+				</div>
+
+			</nav>
+			
+		</div>
+		<div class="row" style="background: #a30c0c; border: outset; border-color: #3333; " >
+			
+			
+				<div class="container" style="padding: 30px">
+					<% @top_view.each do |movie| %>
+
+				  		<div class="col-sm-4">
+				  			<div class="container1" style="padding: 30px; width: 336px;">
+					  			<img src="<%= movie.image_url%>" alt="Avatar" class="image", width: 280px, height: 270px style="height: 270px;width: 280px;"/>
+					  			<div class="overlay">
+					    			<div class="text">
+					    				
+					    				<a href=<%=movie_path(movie)%> style="color: antiquewhite;text-decoration: none;font-family: verdana sans-serif;font-weight: 800;"> <%=movie.title%></a>
+					    			</div>
+					  			</div>
+					  		</div>
+					  	</div>
+					 <%end%>
+
+			  	</div>
+		  	
+  		</div>
+  	</div>
+	
+	
+
+</div>
+
+<script>
+
+
+ 	
+ window.onload = function(){
+
+         if(gon.view == "rate"){
+ 		 		$("#demo").show();
+			    $("#demo2").hide();
+			    $("#demo3").hide();
+ 		 }
+          if(gon.view == "view"){
+          		$("#demo").hide();
+			  	$("#demo2").hide();
+			  	$("#demo3").show();
+          }
+	  	if (gon.view == "top") {
+       			$("#demo").hide();
+	   	     	$("#demo3").hide();
+	    	    $("#demo2").show();
+		} 
+    
+    };
+
+$(document).ready(function(){
+		if(gon.view == "rate"){
+ 		 		$("#demo").show();
+			    $("#demo2").hide();
+			    $("#demo3").hide();
+ 		 }
+          if(gon.view == "view"){
+          		$("#demo").hide();
+			  	$("#demo2").hide();
+			  	$("#demo3").show();
+          }
+	  	if (gon.view == "top") {
+       			$("#demo").hide();
+	   	     	$("#demo3").hide();
+	    	    $("#demo2").show();
+		} 
+    $("#rate").click(function(){
+        $("#demo").show();
+        $("#demo2").hide();
+        $("#demo3").hide();
+    });
+    $("#top").click(function(){
+        $("#demo2").show();
+        $("#demo").hide();
+        $("#demo3").hide();
+
+    });
+    $("#view").click(function(){
+        $("#demo").hide();
+        $("#demo2").hide();
+        $("#demo3").show();
+    });
+});
+
+</script>
+
+

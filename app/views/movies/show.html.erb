@@ -1,0 +1,83 @@
+
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <%= "#{@movie.impressionist_count} views so far!" %>
+	<div class="container" onload="loadImage()", style="border: outset;border-color: #3333;">
+
+		<div class="row" style="background: azure">
+
+			<div class="col-sm-4" style="padding-top: 30px;padding-bottom: 30px;    border: 1px solid #ddd; ">
+				<img src="<%= @movie.image_url%>" width=350px, height=408px/>
+			</div>
+			<div class="col-sm-1">
+			</div>
+			<div class="col-sm-7" style="font-style: oblique;font-family: verdana;">
+				<div class="row">
+				<h1 style="font-size: 90px; font-weight: 800"><%= @movie.title %><i style="font-size: 25px">(<%= @movie.year %>)</i>
+					<i style="float: right;font-size: 10px">
+					<%=image_tag"rating.png"%></i></h1>
+				</div>
+				<div>
+					<i  style=" float: right; padding-right: 33px; font-size: 22px">
+					<%= @movie.rating %>/10
+					</i>
+				</div>
+				<h2 style="font-size: 15px;"><b><i>Genre:</i></b><%= @movie.genre %></h2>
+				<h2 style="font-weight: 600;">Plot:<h2><h4 style="font-size: 12px"><%= @movie.plot %></h4>
+				<h2 style="font-weight: 600;">Cast:<h4><%= @movie.cast %></h4>	
+						
+			</div>
+			
+		</div>
+		<div class="row" style="background: azure">
+			<div class="col-sm-6">	
+				<div class="form-group">
+				<%= form_for :comments do |f| %>
+		 			 <p>
+		    		<b style="font-size: 34px;">Review</b>
+		    		<br>
+		   			 <i class="glyphicon glyphicon-user" style="font-size:60px;"></i>
+		    		<%= f.text_area :body %>
+		  			</p>
+		 			 <p>
+		    		<%= f.submit %>
+		  			</p>
+				<% end %>
+				</div>
+			</div>
+			<div class="col-sm-6" style="border: outset; border-color: #3333; height: 303px;width: 414px;margin-bottom: 29px;border-radius: 14px;background: #333;overflow:auto;">
+				<table class="table" style="color: aliceblue;">
+					<thead><tr><th>TOP 10 LIST OF <%= @movie.genre%></th></tr></thead>
+				<tbody>
+			      <tr>
+			        <th>Name</th>
+			        <th>Genre</th>
+			        <th>Rating</th>
+			      </tr>
+			    </tbody>
+			   <% @movie_with_same_genre.each do |genre| %>
+			   	<tbody>
+			      <tr>
+			        <td>
+			        	<a href=<%=movie_movie_path(genre)%> style="color: aliceblue;text-decoration: none;font-family: verdana sans-serif;font-weight: 800;"> <%=genre.title%></a>
+			        </td>
+			        <td><%=genre.genre%></td>
+			        <td><%=genre.rating%>/10</td>
+			      </tr>
+			 	 </tbody>
+			   	<%end%>
+			</table>
+			</div>
+		</div>
+		<span id="viewers">0</span>
+	</div>
+
+
+<script>
+	 window.onload = loadImage() {
+    alert("Image is loaded");
+};
+
+    </script>
