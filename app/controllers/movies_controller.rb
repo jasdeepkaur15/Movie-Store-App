@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+before_action :authenticate_user!
 	 impressionist actions: [:show]
 	def index
 	
@@ -43,8 +44,16 @@ class MoviesController < ApplicationController
 	def detail
 		@view = params[:view]
 		gon.view = @view
+		search = params[:search]
+
+		if search
 		
-	@home_page_movie = Movie.order('rating DESC')
+       
+      		@home_page_movie = Movie.where("title like?","#{search}%").order('rating ASC')
+  		else
+  			@home_page_movie = Movie.order('rating DESC')
+      	end
+	
 	@new_movies =Movie.order('id DESC')
 	@viewed = ViewTable.order('counter DESC').ids
 

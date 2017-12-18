@@ -17,7 +17,7 @@
 				<div class="row">
 				<h1 style="font-size: 90px; font-weight: 800"><%= @movie.title %><i style="font-size: 25px">(<%= @movie.year %>)</i>
 					<i style="float: right;font-size: 10px">
-					<%=image_tag"rating.png"%></i></h1>
+					<%=image_tag "rating.png"%></i></h1>
 				</div>
 				<div>
 					<i  style=" float: right; padding-right: 33px; font-size: 22px">
@@ -33,18 +33,32 @@
 		</div>
 		<div class="row" style="background: azure">
 			<div class="col-sm-6">	
-				<div class="form-group">
-				<%= form_for :comments do |f| %>
-		 			 <p>
-		    		<b style="font-size: 34px;">Review</b>
-		    		<br>
-		   			 <i class="glyphicon glyphicon-user" style="font-size:60px;"></i>
-		    		<%= f.text_area :body %>
-		  			</p>
-		 			 <p>
-		    		<%= f.submit %>
-		  			</p>
+				<h2>Comments</h2>
+				<% @movie.comments.each do |comment| %>
+				  <p>
+				    <strong>Commenter:</strong><i style="    width: 111px;">
+				    <%=comment.user.email %></i>
+				  </p>
+				 
+				  <p>
+				    <strong>Comment:</strong>
+				    <%= comment.review %>
+				  </p>
 				<% end %>
+				<div class="form-group">
+				<%= form_for([@movie, @movie.comments.build]) do |f| %>
+					 <div class="container" style="    padding-left: 0px;">
+				<div class="col-sm-1"> 		 
+				    <%=image_tag (current_user.image_url),width: "94px"%>
+					    </div>
+					    <div class="col-sm-2"><%= f.text_area :review %>
+					  </div>
+					 
+					  <div class="col-sm-3">
+					    <%= f.submit %>
+					</div>
+					<% end %>
+					</div>
 				</div>
 			</div>
 			<div class="col-sm-6" style="border: outset; border-color: #3333; height: 303px;width: 414px;margin-bottom: 29px;border-radius: 14px;background: #333;overflow:auto;">
@@ -61,18 +75,17 @@
 			   	<tbody>
 			      <tr>
 			        <td>
-			        	<a href=<%=movie_movie_path(genre)%> style="color: aliceblue;text-decoration: none;font-family: verdana sans-serif;font-weight: 800;"> <%=genre.title%></a>
+			        	<a href=<%=movie_path(genre)%> style="color: aliceblue;text-decoration: none;font-family: verdana sans-serif;font-weight: 800;"> <%=genre.title%></a>
 			        </td>
 			        <td><%=genre.genre%></td>
 			        <td><%=genre.rating%>/10</td>
-			      </tr>
+			      </tr>	
 			 	 </tbody>
 			   	<%end%>
 			</table>
 			</div>
 		</div>
-		<span id="viewers">0</span>
-	</div>
+			</div>
 
 
 <script>

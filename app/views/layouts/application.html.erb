@@ -13,7 +13,7 @@
     <%= Gon::Base.render_data %>
   </head>
 
-  <body style="    background: darkgray;">
+  <body style="sbackground: darkgray;">
     <div class="container">
           	<p class="notice"><%= notice %></p>
                <p class="alert"><%= alert %></p>
@@ -21,7 +21,7 @@
             <div class="header" style="border-color: #3333;">MOVIE STORE</div>
           </div>
           <div class="row">
-            <nav class="navbar navbar-inverse" style="    margin-bottom: 0px;">
+            <nav class="navbar navbar-inverse" style=" margin-bottom: 0px;">
               <div class="container-fluid">
                 <div class="nav_bar">
                   <div class="navbar-header">
@@ -31,9 +31,56 @@
                     <li class="active">
                       <a href="/movies">Home</a>
                     </li>
-                    <li><a href=/movies/new>Add Movie</a></li></ul><ul class="nav navbar-nav" style="float: right"> 
-                      <li><a href="#">Sign Up</a></li>
-                        <li><a href="#">Account</a></li>
+                    <li><a href=/movies/new>Add Movie</a></li>
+                    <li>
+                      <%= form_tag detail_movies_path, :method => 'get',class: "navbar-form navbar-left" do %>
+                          <div class="form-group">
+                          <%= text_field_tag :search, params[:search],class:"form-control",placeholder: "Find Movies" %>
+                          </div>
+                         <%= submit_tag "Search", :name => nil,class: "btn btn-default" %>
+                      <% end %>
+                    </li>
+                    
+                  </ul><ul class="nav navbar-nav" style="float: right"> 
+                      
+                      <li><a href="users/sign_in">Sign Up</a></li>
+                      <li><%=link_to 'sign_out', destroy_user_session_path, method: :DELETE%></li>
+                        <li>
+                                <div>
+                                    <div class="dropdown">
+                                         <button class="btn btn-primary dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" style="background: #101010;
+                                         padding-bottom: 14px;
+                                         border-color: #101010;
+                                         padding-top: 14px;" , 
+                                         aria-expanded="false">
+                                         <% if current_user%>
+                                              <%= current_user.email%>
+                                         
+                                           <%else %>
+                                         <%end%> <span class="caret"></span></button>
+                                         <ul class="dropdown-menu" role="menu" >
+                                           <li role="presentation"><a role="menuitem" tabindex="-1" href="#">
+                                                <% if user_signed_in? %>
+                                             <%= link_to 'ACCOUNT' , edit_user_registration_path%>            
+                                           
+                                           <% else %>
+
+                                             <% end %></a></li>
+                                           <li role="presentation"><a role="menuitem" tabindex="-1" href="#">SETTING</a></li>
+                                           <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><% if user_signed_in? %>
+                                           <%= link_to 'LOGOUT' , destroy_user_session_path, method: :DELETE %>
+                                             
+                                       
+                                        
+                                       <% else %>
+
+                                         <% end %></li>
+                                           <li role="presentation" class="divider"></li>
+                                           <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+                                         </ul>
+                                       </div>
+                                     </div>
+                        </li>
                       </ul>
                     </div>
                   </div>

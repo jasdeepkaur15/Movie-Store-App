@@ -3,6 +3,17 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
+
+<%= image_tag "avatar.png",id: "blah",class: "avatar img-circle", width:"30%", height:"30%" %>
+                  <h6>Upload a  photo...</h6>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+                    <%= f.file_field :image, class: "form-control",autofocus: true,id:"imgInp" %>
+                  </div>
+                </div>
+                </br>
+
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
@@ -27,3 +38,19 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+
+<script>
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#imgInp").change(function(){
+    readURL(this);
+});
+</script>
