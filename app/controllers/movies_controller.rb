@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-before_action :authenticate_user!
+before_action :authenticate_admin_user!,only: [:create]
 	 impressionist actions: [:show]
 	def index
 	
@@ -55,7 +55,7 @@ before_action :authenticate_user!
       	end
 	
 	@new_movies =Movie.order('id DESC')
-	@viewed = ViewTable.order('counter DESC').ids
+	@viewed = ViewTable.order('counter DESC').collect(&:movie_id)
 
 	@top_view=Movie.where(id: @viewed).index_by(&:id).slice(*@viewed).values
 	

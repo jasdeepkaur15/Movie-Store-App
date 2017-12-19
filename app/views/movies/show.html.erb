@@ -3,7 +3,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <%= "#{@movie.impressionist_count} views so far!" %>
+  
 	<div class="container" onload="loadImage()", style="border: outset;border-color: #3333;">
 
 		<div class="row" style="background: azure">
@@ -31,37 +31,8 @@
 			</div>
 			
 		</div>
-		<div class="row" style="background: azure">
-			<div class="col-sm-6">	
-				<h2>Comments</h2>
-				<% @movie.comments.each do |comment| %>
-				  <p>
-				    <strong>Commenter:</strong><i style="    width: 111px;">
-				    <%=comment.user.email %></i>
-				  </p>
-				 
-				  <p>
-				    <strong>Comment:</strong>
-				    <%= comment.review %>
-				  </p>
-				<% end %>
-				<div class="form-group">
-				<%= form_for([@movie, @movie.comments.build]) do |f| %>
-					 <div class="container" style="    padding-left: 0px;">
-				<div class="col-sm-1"> 		 
-				    <%=image_tag (current_user.image_url),width: "94px"%>
-					    </div>
-					    <div class="col-sm-2"><%= f.text_area :review %>
-					  </div>
-					 
-					  <div class="col-sm-3">
-					    <%= f.submit %>
-					</div>
-					<% end %>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6" style="border: outset; border-color: #3333; height: 303px;width: 414px;margin-bottom: 29px;border-radius: 14px;background: #333;overflow:auto;">
+		<div class="col-sm-6">
+				<div class="col-sm-12" style="border: outset; border-color: #3333; height: 303px;width: 526px;margin-bottom: 29px;border-radius: 14px;background: #333;overflow:auto;">
 				<table class="table" style="color: aliceblue;">
 					<thead><tr><th>TOP 10 LIST OF <%= @movie.genre%></th></tr></thead>
 				<tbody>
@@ -84,6 +55,75 @@
 			   	<%end%>
 			</table>
 			</div>
+			</div>
+		<div class="row" style="background: azure">
+			<div class="col-sm-6" style="border: outset; border-color: #3333; height: 303px;width: 565px;margin-bottom: 29px;border-radius: 14px;overflow: hidden;">	
+				
+				<h2>Comments</h2>
+				<% @movie.comments.order('created_at DESC').each do |comment| %>
+				 <div class="col-sm-3">
+				   <%=image_tag (comment.user.image_url),width: "94px"%></div>
+				   <div class="row">
+				    <i><b><%=comment.user.email %></b></i>::
+				    <%= comment.review %>
+
+				  </div><br>	
+				<% end %>
+			</div>
+			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="float: right">Browse More</button>
+
+			<div class="container">
+  			
+  			<div class="modal fade" id="myModal" role="dialog">
+  				<div class="modal-dialog">
+  					<div class="modal-content">
+  					 <div class="modal-header">
+  					 	<button type="button" class="close" data-dismiss="modal">&times;</button>
+  					 	<h4 class="modal-title">Modal Header</h4>
+  					 	</div>
+  					 	<div class="modal-body"><p><h2>Comments</h2>
+				<% @movie.comments.each do |comment| %>
+				  <p>
+				    <strong>Commenter:</strong><i style="    width: 111px;">
+				    <%=comment.user.email %></i>
+				  </p>
+				 
+				  <p>
+				    <strong>Comment:</strong>
+				    <%= comment.review %>
+				  </p>
+				<% end %></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+			
+				<div class="form-group">
+					<%if user_signed_in? %>
+						<%= form_for([@movie, @movie.comments.build]) do |f| %>
+					 <div class="container" style="    padding-left: 0px; float: ">
+						<div class="col-sm-1"> 		 
+					    <%=image_tag (current_user.image_url),width: "94px"%>
+					    </div>
+					    <div class="col-sm-2"><%=f.text_area :review, height: "63px"%>
+					  	</div>
+					 
+					  	<div class="col-sm-2">
+					    <%= f.submit %>
+					 </div>
+					<% end %>
+					<%end%>
+					
+				</div>
+				</div>
+			</div>
+			
 		</div>
 			</div>
 

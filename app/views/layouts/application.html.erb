@@ -31,7 +31,11 @@
                     <li class="active">
                       <a href="/movies">Home</a>
                     </li>
+                    <%if current_admin_user%>
                     <li><a href=/movies/new>Add Movie</a></li>
+                    <li><%=link_to 'ADMIN SIGN IN', new_admin_user_session_path%></li>
+                      <li><%=link_to 'admin_sign_out', destroy_admin_user_session_path, method: :DELETE%></li>
+                    <%end%>
                     <li>
                       <%= form_tag detail_movies_path, :method => 'get',class: "navbar-form navbar-left" do %>
                           <div class="form-group">
@@ -42,10 +46,7 @@
                     </li>
                     
                   </ul><ul class="nav navbar-nav" style="float: right"> 
-                      
-                      <li><a href="users/sign_in">Sign Up</a></li>
-                      <li><%=link_to 'sign_out', destroy_user_session_path, method: :DELETE%></li>
-                        <li>
+                     <li>
                                 <div>
                                     <div class="dropdown">
                                          <button class="btn btn-primary dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" style="background: #101010;
@@ -56,19 +57,25 @@
                                          <% if current_user%>
                                               <%= current_user.email%>
                                          
-                                           <%else %>
+                                           <%elsif current_admin_user%>
+                                              <%=current_admin_user.email%>
+                                           <%else%>
+                                           Account
                                          <%end%> <span class="caret"></span></button>
                                          <ul class="dropdown-menu" role="menu" >
                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">
                                                 <% if user_signed_in? %>
-                                             <%= link_to 'ACCOUNT' , edit_user_registration_path%>            
-                                           
+                                             <li><%= link_to 'ACCOUNT' , edit_user_registration_path%></li>            
+                                           <li><%=link_to 'LOG OUT', destroy_user_session_path, method: :DELETE%></li>
                                            <% else %>
+                       
 
-                                             <% end %></a></li>
+                                    <li><a href="users/sign_in">LOGIN</a></li>
+                                         <%end%>
+                                             </a></li>
                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">SETTING</a></li>
                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><% if user_signed_in? %>
-                                           <%= link_to 'LOGOUT' , destroy_user_session_path, method: :DELETE %>
+                                           
                                              
                                        
                                         
@@ -123,3 +130,11 @@
 </div>
   </body>
 </html>
+
+
+<script type="text/javascript" src="js/bootstrap/bootstrap-dropdown.js"></script>
+<script>
+     $(document).ready(function(){
+        $('.dropdown-toggle').dropdown()
+    });
+</script>
