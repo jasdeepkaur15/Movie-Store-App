@@ -12,25 +12,27 @@ before_action :authenticate_admin_user!,only: [:create]
 	
 
 	def new
-		
+		view = params[:view]
 	end
 
 	def create
-		@view = params[:view]
+		
 		 if params[:view] =='automatic'
+		 	
       		@mv = OtherServiceCall.new.api_call(params[:movie][:title])
       		if @mv == true
-        		redirect_to "#{ Rails.application.secrets.url}/admin/movies",notice: "movie Successfully Saved"
+        		redirect_to "http://192.168.3.3:3000/admin/movies",notice: "movie Successfully Saved"
       		else
        			 redirect_to new_admin_movie_path(view: params[:view]),alert: "Movie Not Found Please verify it."
      		 end
     	else
 			@movie = Movie.new(movie_params)
 			if @movie.save
-				redirect_to movie_path(@movie)
+				 redirect_to "http://192.168.3.3:3000/admin/movies",notice: "movie Successfully Saved"
+      else
+        redirect_to new_admin_movie_path
 
-			else
-			render 'new'
+			
 			end
 		end
 	end
@@ -71,7 +73,7 @@ before_action :authenticate_admin_user!,only: [:create]
 	
 	end
 
-	
+
 
 
 

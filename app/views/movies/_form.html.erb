@@ -18,8 +18,10 @@
     <br>
     <br>
 
-    <%if view == 'automatic'%>
-    <% else%>
+    <% if view == 'automatic' %>
+  <%= hidden_field_tag 'view', view %>
+  <%else%>
+  <%= view %>
     <div class="form-group">
       <label for="inputEmail3" class="col-sm-2">
         Poster
