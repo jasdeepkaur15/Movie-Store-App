@@ -32,6 +32,7 @@ gem 'activeadmin'
 gem 'carrierwave'
 gem 'gon'
 gem 'impressionist'
+gem 'draper'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -56,6 +57,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem "figaro"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
